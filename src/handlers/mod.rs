@@ -31,7 +31,7 @@ pub async fn delete_question(
     State(dc): State<DatabaseController>,
     Path(q_id): Path<String>,
 ) -> Result<()> {
-    return handlers_inner::delete_question(dc, q_id).await;
+    return handlers_inner::delete_question(dc, q_id.into()).await;
 }
 
 #[debug_handler]
@@ -47,7 +47,7 @@ pub async fn list_answers(
     State(dc): State<DatabaseController>,
     Path(q_id): Path<String>,
 ) -> Result<Json<Vec<AnswerDetails>>> {
-    return handlers_inner::list_answers(dc, q_id).await;
+    return handlers_inner::list_answers(dc, q_id.into()).await;
 }
 
 #[debug_handler]
@@ -55,5 +55,5 @@ pub async fn delete_answer(
     State(dc): State<DatabaseController>,
     Path(a_id): Path<String>,
 ) -> Result<()> {
-    return handlers_inner::delete_answer(dc, a_id).await;
+    return handlers_inner::delete_answer(dc, a_id.into()).await;
 }

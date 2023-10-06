@@ -17,7 +17,7 @@ pub async fn list_questions(dc: DatabaseController) -> Result<Json<Vec<QuestionD
     return Ok(Json(dc.list_questions().await?));
 }
 
-pub async fn delete_question(dc: DatabaseController, q_id: String) -> Result<()> {
+pub async fn delete_question(dc: DatabaseController, q_id: Box<str>) -> Result<()> {
     dc.delete_question(q_id).await?;
     return Ok(());
 }
@@ -28,12 +28,12 @@ pub async fn create_answer(dc: DatabaseController, answer: Answer) -> Result<Jso
 
 pub async fn list_answers(
     dc: DatabaseController,
-    q_id: String,
+    q_id: Box<str>,
 ) -> Result<Json<Vec<AnswerDetails>>> {
     return Ok(Json(dc.list_answers(q_id).await?));
 }
 
-pub async fn delete_answer(dc: DatabaseController, a_id: String) -> Result<()> {
+pub async fn delete_answer(dc: DatabaseController, a_id: Box<str>) -> Result<()> {
     dc.delete_answer(a_id).await?;
     return Ok(());
 }
